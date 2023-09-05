@@ -4,13 +4,13 @@ const ObjectId = mongodb.ObjectId;
 
 let reviews;
 
-export default class reviewsDAO{
+export default class ReviewsDAO{
     static async injectDB(conn){
         if(reviews){
             return;
         }
         try{
-            reviews = await conn.db(process.env.MOVIEREVIEWS_NS).collection("reviews");
+            reviews = await conn.db(process.env.MOVIEREVIEWS_NS).collection("review");
         }
         catch(e){
             console.error(`Unable to establish connection handle in reviewDAO. ${e}`)
@@ -24,7 +24,7 @@ export default class reviewsDAO{
                 user_id: user._id,
                 date: date, 
                 review: review,
-                movie_id: ObjectId(movieId),
+                movie_id: new ObjectId(movieId),
             }
             
             return await reviews.insertOne(reviewDoc);
