@@ -58,7 +58,7 @@ export default class ReviewsController {
     try {
       const reviewId = req.body.review_id;
       const userId = req.body.user_id;
-      const ReviewResponse = await ReviewsDAO.apiDeleteReview(reviewId, userId);
+      const ReviewResponse = await ReviewsDAO.deleteReview(reviewId, userId);
 
       res.json({status: "success"});
     } catch (e) {
