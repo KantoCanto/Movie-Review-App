@@ -1,5 +1,5 @@
 import {React, useState} from "react";
-import {Switch, Route, Link} from "react-router-dom";
+import {Routes, Route, Link} from "react-router-dom";
 import './App.css';
 
 //import react-bootstrap
@@ -45,6 +45,28 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
+      <Routes>
+
+        <Route exact path={"/" && "/movies"} component={MoviesList}>
+        </Route>
+
+        <Route path="/movies/:id/review" render={(props) =>
+          <AddReview {...props} user={user}/>
+        }>
+        </Route>
+
+        <Route path="/movies/:id" render={(props) =>
+          <Movie {...props} user={user} /> 
+        }>
+        </Route>
+
+        <Route path="/login" render={(props) =>
+          <Login {...props} login={login}/>
+        }>
+        </Route>
+
+      </Routes>
     </div>
   );
 }
